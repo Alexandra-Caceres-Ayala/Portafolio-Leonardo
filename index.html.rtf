@@ -1,0 +1,304 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="es" class="scroll-smooth">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>Leonardo Caceres Ayala | Portafolio Cl\'ednico</title>\
+    \
+    <link rel="preconnect" href="https://fonts.googleapis.com">\
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">\
+    \
+    <script src="https://cdn.tailwindcss.com"></script>\
+    \
+    <script>\
+        tailwind.config = \{\
+            theme: \{\
+                extend: \{\
+                    colors: \{\
+                        clinNavy: '#1A365D',\
+                        clinTeal: '#319795',\
+                        clinBg: '#F7FAFC'\
+                    \},\
+                    fontFamily: \{\
+                        heading: ['Montserrat', 'sans-serif'],\
+                        body: ['Open Sans', 'sans-serif']\
+                    \}\
+                \}\
+            \}\
+        \}\
+    </script>\
+\
+    <style>\
+        body \{\
+            background-color: #F7FAFC;\
+            background-image: radial-gradient(circle at 15% 50%, rgba(49, 151, 149, 0.05), transparent 25%),\
+                              radial-gradient(circle at 85% 30%, rgba(26, 54, 93, 0.05), transparent 25%);\
+            background-attachment: fixed;\
+        \}\
+\
+        /* Efecto Glassmorphism */\
+        .glass-card \{\
+            background: rgba(255, 255, 255, 0.65);\
+            backdrop-filter: blur(16px);\
+            -webkit-backdrop-filter: blur(16px);\
+            border: 1px solid rgba(255, 255, 255, 0.5);\
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);\
+            transition: transform 0.3s ease, box-shadow 0.3s ease;\
+        \}\
+        \
+        .glass-card:hover \{\
+            transform: translateY(-5px);\
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);\
+        \}\
+\
+        /* Animaci\'f3n Latido de Coraz\'f3n */\
+        @keyframes heartbeat \{\
+            0% \{ transform: scale(1); \}\
+            14% \{ transform: scale(1.06); \}\
+            28% \{ transform: scale(1); \}\
+            42% \{ transform: scale(1.06); \}\
+            70% \{ transform: scale(1); \}\
+        \}\
+        .hover-heartbeat:hover \{\
+            animation: heartbeat 1.5s ease-in-out infinite;\
+        \}\
+\
+        /* Animaciones de Scroll (Fade In Up) */\
+        .fade-in-up \{\
+            opacity: 0;\
+            transform: translateY(30px);\
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;\
+        \}\
+        .fade-in-up.visible \{\
+            opacity: 1;\
+            transform: translateY(0);\
+        \}\
+\
+        /* L\'ednea de tiempo vertical */\
+        .timeline-line::before \{\
+            content: '';\
+            position: absolute;\
+            left: 15px;\
+            top: 0;\
+            bottom: 0;\
+            width: 2px;\
+            background-color: #319795;\
+            opacity: 0.3;\
+        \}\
+        @media (min-width: 768px) \{\
+            .timeline-line::before \{ left: 50%; transform: translateX(-50%); \}\
+        \}\
+    </style>\
+</head>\
+<body class="font-body text-gray-800 antialiased overflow-x-hidden">\
+\
+    <nav class="fixed w-full z-50 glass-card bg-white/80 border-b-0 py-4 px-6 md:px-12 flex justify-between items-center">\
+        <span class="font-heading font-bold text-clinNavy text-xl tracking-wide">LC<span class="text-clinTeal">.</span></span>\
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-clinNavy">\
+            <a href="#hero" class="hover:text-clinTeal transition">Inicio</a>\
+            <a href="#about" class="hover:text-clinTeal transition">Sobre M\'ed</a>\
+            <a href="#experience" class="hover:text-clinTeal transition">Experiencia</a>\
+            <a href="#education" class="hover:text-clinTeal transition">Especialidades</a>\
+            <a href="#contact" class="hover:text-clinTeal transition">Contacto</a>\
+        </div>\
+    </nav>\
+\
+    <section id="hero" class="min-h-screen flex items-center justify-center relative px-6 pt-20">\
+        <div class="absolute inset-0 bg-gradient-to-br from-white via-clinBg to-[#E6FFFA] -z-10"></div>\
+        <div class="max-w-4xl mx-auto text-center fade-in-up">\
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full glass-card text-clinTeal font-semibold text-sm">\
+                Compromiso y \'c9tica Profesional\
+            </div>\
+            <h1 class="font-heading text-5xl md:text-7xl font-bold text-clinNavy leading-tight mb-6">\
+                Hola, soy Leonardo Caceres Ayala[cite: 1].\
+            </h1>\
+            <p class="text-xl md:text-2xl text-gray-600 mb-10 font-light leading-relaxed">\
+                Auxiliar de Enfermer\'eda[cite: 14]. Brindando cuidado integral con empat\'eda, \'e9tica y excelencia cl\'ednica en Bucaramanga[cite: 5, 8, 10].\
+            </p>\
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">\
+                <a href="#contact" class="hover-heartbeat bg-clinNavy text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:bg-opacity-90 transition-all w-full sm:w-auto">\
+                    Contactar\
+                </a>\
+                <a href="#about" class="hover-heartbeat bg-white text-clinNavy border border-clinNavy px-8 py-4 rounded-lg font-semibold text-lg shadow hover:bg-clinNavy hover:text-white transition-all w-full sm:w-auto">\
+                    Explorar mi vocaci\'f3n\
+                </a>\
+            </div>\
+        </div>\
+    </section>\
+\
+    <section id="about" class="py-24 px-6 relative">\
+        <div class="max-w-5xl mx-auto glass-card rounded-3xl p-8 md:p-16 fade-in-up">\
+            <div class="grid md:grid-cols-2 gap-12 items-center">\
+                <div>\
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-clinNavy mb-6 relative inline-block">\
+                        El Humano detr\'e1s del Cl\'ednico\
+                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-clinTeal rounded-full"></span>\
+                    </h2>\
+                    <p class="text-gray-700 leading-relaxed mb-6 text-lg">\
+                        Soy un profesional con perfil operativo y asistencial, dedicado al cuidado integral del paciente[cite: 5]. Mi experiencia me ha permitido desarrollar fuertes habilidades en la coordinaci\'f3n de actividades de atenci\'f3n directa [cite: 6, 7], manteniendo siempre una respuesta oportuna y \'e9tica frente a situaciones adversas[cite: 8].\
+                    </p>\
+                    <p class="text-gray-700 leading-relaxed text-lg">\
+                        Creo firmemente en la importancia de establecer relaciones arm\'f3nicas y manejar adecuadamente las emociones, tanto del paciente como de su familia[cite: 7].\
+                    </p>\
+                </div>\
+                <div class="relative h-64 md:h-full w-full bg-gradient-to-tr from-clinNavy to-clinTeal rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center">\
+                    <svg class="w-32 h-32 text-white opacity-20 hover-heartbeat" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>\
+                </div>\
+            </div>\
+        </div>\
+    </section>\
+\
+    <section id="experience" class="py-24 px-6 bg-white/50">\
+        <div class="max-w-4xl mx-auto">\
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center text-clinNavy mb-16 fade-in-up">\
+                El Trayecto\
+            </h2>\
+            \
+            <div class="relative timeline-line">\
+                <div class="mb-12 md:flex justify-between items-center w-full fade-in-up">\
+                    <div class="hidden md:block w-5/12"></div>\
+                    <div class="z-20 flex items-center order-1 bg-clinTeal shadow-xl w-8 h-8 rounded-full absolute left-[15px] md:left-1/2 transform -translate-x-1/2"></div>\
+                    <div class="order-1 glass-card rounded-xl shadow-md w-full md:w-5/12 px-6 py-4 ml-12 md:ml-0">\
+                        <h3 class="font-bold text-clinNavy text-lg">Coomultrasan [cite: 32]</h3>\
+                        <span class="text-sm font-semibold text-clinTeal block mb-2">Septiembre 2023 - Actualidad [cite: 33]</span>\
+                        <p class="text-sm text-gray-600 leading-snug">Atenci\'f3n directa en sala de procedimientos, EKG, curaciones [cite: 34], actualizaci\'f3n de bases de datos de pacientes de riesgo cardiovascular[cite: 35].</p>\
+                    </div>\
+                </div>\
+\
+                <div class="mb-12 md:flex justify-between items-center w-full fade-in-up">\
+                    <div class="order-1 glass-card rounded-xl shadow-md w-full md:w-5/12 px-6 py-4 ml-12 md:ml-0 text-left md:text-right">\
+                        <h3 class="font-bold text-clinNavy text-lg">Unidad Renal [cite: 27]</h3>\
+                        <span class="text-sm font-semibold text-clinTeal block mb-2">Nov 2018 - Mar 2023 [cite: 29]</span>\
+                        <p class="text-sm text-gray-600 leading-snug">Cuidado especializado en hemodi\'e1lisis [cite: 28], terapias peritoneales, y atenci\'f3n en UCI con terapias de reemplazo renal continuo (Gambro, ASAHI, Nikkiso)[cite: 30, 31].</p>\
+                    </div>\
+                    <div class="z-20 flex items-center order-1 bg-clinTeal shadow-xl w-8 h-8 rounded-full absolute left-[15px] md:left-1/2 transform -translate-x-1/2"></div>\
+                    <div class="hidden md:block w-5/12"></div>\
+                </div>\
+\
+                <div class="mb-12 md:flex justify-between items-center w-full fade-in-up">\
+                    <div class="hidden md:block w-5/12"></div>\
+                    <div class="z-20 flex items-center order-1 bg-clinTeal shadow-xl w-8 h-8 rounded-full absolute left-[15px] md:left-1/2 transform -translate-x-1/2"></div>\
+                    <div class="order-1 glass-card rounded-xl shadow-md w-full md:w-5/12 px-6 py-4 ml-12 md:ml-0">\
+                        <h3 class="font-bold text-clinNavy text-lg">Hospital Departamental Tomas Uribe Uribe [cite: 21]</h3>\
+                        <span class="text-sm font-semibold text-clinTeal block mb-2">Feb 2018 - Oct 2018 [cite: 22]</span>\
+                        <p class="text-sm text-gray-600 leading-snug">Atenci\'f3n en reanimaci\'f3n cardiopulmonar y trauma[cite: 23, 24]. Manejo de procedimientos invasivos[cite: 25].</p>\
+                    </div>\
+                </div>\
+\
+                <div class="mb-12 md:flex justify-between items-center w-full fade-in-up">\
+                    <div class="order-1 glass-card rounded-xl shadow-md w-full md:w-5/12 px-6 py-4 ml-12 md:ml-0 text-left md:text-right">\
+                        <h3 class="font-bold text-clinNavy text-lg">Fundaci\'f3n Cardiovascular de Colombia [cite: 15]</h3>\
+                        <span class="text-sm font-semibold text-clinTeal block mb-2">Ene 2016 - Sep 2017 [cite: 16]</span>\
+                        <p class="text-sm text-gray-600 leading-snug">Cuidado hemodin\'e1mico en UCI cardiovascular pedi\'e1trica y salas de cirug\'eda adulto[cite: 17, 19]. Atenci\'f3n primaria en Unidad ECMO[cite: 18].</p>\
+                    </div>\
+                    <div class="z-20 flex items-center order-1 bg-clinTeal shadow-xl w-8 h-8 rounded-full absolute left-[15px] md:left-1/2 transform -translate-x-1/2"></div>\
+                    <div class="hidden md:block w-5/12"></div>\
+                </div>\
+            </div>\
+        </div>\
+    </section>\
+\
+    <section id="education" class="py-24 px-6 relative">\
+        <div class="max-w-6xl mx-auto">\
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center text-clinNavy mb-16 fade-in-up">\
+                Formaci\'f3n y Especialidades\
+            </h2>\
+            \
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">\
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center text-center fade-in-up">\
+                    <div class="w-12 h-12 bg-clinNavy/10 rounded-full flex items-center justify-center mb-4 text-clinNavy">\
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>\
+                    </div>\
+                    <h3 class="font-bold text-clinNavy mb-2">T\'e9cnico Auxiliar de Enfermer\'eda</h3>\
+                    <p class="text-sm text-gray-500">SENA (2016) [cite: 38]</p>\
+                </div>\
+                \
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center text-center fade-in-up" style="transition-delay: 100ms;">\
+                    <div class="w-12 h-12 bg-clinTeal/10 rounded-full flex items-center justify-center mb-4 text-clinTeal">\
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>\
+                    </div>\
+                    <h3 class="font-bold text-clinNavy mb-2">Manejo Hemodin\'e1mico</h3>\
+                    <p class="text-sm text-gray-500">Paciente en hemodi\'e1lisis [cite: 50]</p>\
+                </div>\
+\
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center text-center fade-in-up" style="transition-delay: 200ms;">\
+                    <div class="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center mb-4 text-red-500">\
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>\
+                    </div>\
+                    <h3 class="font-bold text-clinNavy mb-2">RCP B\'e1sico</h3>\
+                    <p class="text-sm text-gray-500">Reanimaci\'f3n Cardiopulmonar [cite: 49]</p>\
+                </div>\
+\
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center text-center fade-in-up" style="transition-delay: 300ms;">\
+                    <div class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mb-4 text-purple-600">\
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>\
+                    </div>\
+                    <h3 class="font-bold text-clinNavy mb-2">Atenci\'f3n Integral</h3>\
+                    <p class="text-sm text-gray-500">A v\'edctimas de violencia [cite: 48]</p>\
+                </div>\
+            </div>\
+        </div>\
+    </section>\
+\
+    <section id="contact" class="bg-clinNavy text-white py-24 px-6 text-center">\
+        <div class="max-w-3xl mx-auto fade-in-up">\
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-6">\
+                \'bfNecesitas un profesional comprometido con la vida y la salud?\
+            </h2>\
+            <p class="text-xl text-clinTeal mb-10 font-light">Hablemos.</p>\
+            \
+            <div class="glass-card bg-white/10 border-white/20 p-8 rounded-2xl flex flex-col md:flex-row justify-center items-center gap-8 text-lg">\
+                <a href="mailto:Leoayala0712@gmail.com" class="flex items-center gap-3 hover:text-clinTeal transition">\
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>\
+                    Leoayala0712@gmail.com [cite: 2]\
+                </a>\
+                <div class="hidden md:block w-px h-8 bg-white/30"></div>\
+                <div class="flex items-center gap-3">\
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>\
+                    3182663597 - 3186268972 [cite: 3]\
+                </div>\
+                <div class="hidden md:block w-px h-8 bg-white/30"></div>\
+                <div class="flex items-center gap-3">\
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>\
+                    Bucaramanga [cite: 10]\
+                </div>\
+            </div>\
+            \
+            <footer class="mt-16 text-sm text-gray-400">\
+                &copy; 2026 Leonardo Caceres Ayala. Portafolio Profesional.\
+            </footer>\
+        </div>\
+    </section>\
+\
+    <script>\
+        document.addEventListener('DOMContentLoaded', () => \{\
+            // Intersection Observer para las animaciones 'fade-in-up'\
+            const observerOptions = \{\
+                root: null,\
+                rootMargin: '0px',\
+                threshold: 0.15\
+            \};\
+\
+            const observer = new IntersectionObserver((entries, observer) => \{\
+                entries.forEach(entry => \{\
+                    if (entry.isIntersecting) \{\
+                        entry.target.classList.add('visible');\
+                        observer.unobserve(entry.target); // Solo animar una vez\
+                    \}\
+                \});\
+            \}, observerOptions);\
+\
+            const fadeElements = document.querySelectorAll('.fade-in-up');\
+            fadeElements.forEach(el => observer.observe(el));\
+        \});\
+    </script>\
+</body>\
+</html>}
