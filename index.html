@@ -3,439 +3,398 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo Caceres Ayala | Portafolio Clínico</title>
+    <title>Leonardo Caceres Ayala | Auxiliar de Enfermería</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Inter para máxima legibilidad clínica -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Outfit:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Iconos -->
+    <!-- Iconos Médicos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Librerías Externas -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-
-    <!-- Tailwind Configuración -->
+    <!-- Tailwind Configuración Clínica -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        clinNavy: '#1A365D',
-                        clinTeal: '#319795',
-                        clinLight: '#E6FFFA',
-                        glassBg: 'rgba(255, 255, 255, 0.7)',
-                        glassBorder: 'rgba(255, 255, 255, 0.4)'
+                        quiroNavy: '#0A2463',   /* Azul profundo quirúrgico */
+                        vitalBlue: '#3E92CC',   /* Azul cielo / Monitoreo */
+                        alertRed: '#D8315B',    /* Rojo emergencia/vida (Acentos) */
+                        sterileBg: '#F4F7F6',   /* Gris muy claro / Blanco estéril */
+                        paperWhite: '#FFFFFF'
                     },
                     fontFamily: {
-                        heading: ['Space Grotesk', 'sans-serif'],
-                        body: ['Outfit', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
+                        sans: ['Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
 
-    <!-- CSS Personalizado -->
+    <!-- CSS Personalizado: Metáforas Clínicas -->
     <style>
         body {
-            background-color: #F7FAFC;
-            color: #2D3748;
-            overflow-x: hidden;
+            background-color: var(--sterileBg);
+            background-image: 
+                linear-gradient(rgba(62, 146, 204, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(62, 146, 204, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px; /* Patrón de cuadrícula médica sutil */
         }
 
-        /* Fondo Animado Gradiente */
-        .background-blobs {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; overflow: hidden; background: #F7FAFC;
+        /* Tarjeta de Expediente Médico */
+        .clinical-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(10, 36, 99, 0.04);
+            border: 1px solid rgba(62, 146, 204, 0.1);
+            border-top: 4px solid #3E92CC; /* Simula la pestaña de una carpeta */
+            transition: all 0.3s ease;
         }
-        .blob {
-            position: absolute; filter: blur(90px); opacity: 0.6;
-            animation: float 20s infinite alternate;
+        .clinical-card:hover {
+            box-shadow: 0 8px 30px rgba(10, 36, 99, 0.08);
+            transform: translateY(-3px);
         }
-        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, rgba(49, 151, 149, 0.15) 0%, rgba(0,0,0,0) 70%); }
-        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: radial-gradient(circle, rgba(26, 54, 93, 0.1) 0%, rgba(0,0,0,0) 70%); animation-delay: -5s; }
-        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(5%, 5%) scale(1.1); } }
 
-        /* Glassmorphism */
-        .glass-card {
-            background: var(--glassBg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glassBorder);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Animación Electrocardiograma (EKG) */
+        .ekg-line {
+            width: 100%;
+            height: 60px;
+            overflow: hidden;
+            position: relative;
         }
-        .glass-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(49, 151, 149, 0.1); }
-
-        /* Status Badge */
-        .status-badge {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: white; border: 1px solid rgba(49, 151, 149, 0.2);
-            padding: 8px 20px; border-radius: 30px; font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 25px;
-            color: #1A365D; font-weight: 600;
+        .ekg-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 4s linear infinite;
         }
-        .status-dot { width: 10px; height: 10px; background-color: #319795; border-radius: 50%; box-shadow: 0 0 12px #319795; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
-
-        /* Typing Effect */
-        .typing-text { font-size: clamp(1.2rem, 2vw, 1.5rem); color: #4A5568; margin-bottom: 25px; min-height: 40px; font-weight: 300; }
-        .typing-text .cursor { display: inline-block; width: 3px; background-color: #319795; animation: blink 1s step-end infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* Monitor Clínico */
-        .clinical-monitor {
-            background: #0D1117; border: 2px solid #2D3748; border-radius: 16px;
-            overflow: hidden; font-family: 'Fira Code', monospace; font-size: 14px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
         }
-        .monitor-header { background: #1A202C; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2D3748; color: #A0AEC0; font-size: 12px; }
-        .monitor-body { padding: 25px; color: #48BB78; } 
-        
-        .vital-sign-btn {
-            background: rgba(49, 151, 149, 0.1); border: 1px solid #319795; color: #319795; padding: 10px 20px; border-radius: 8px; font-family: inherit; font-weight: bold; cursor: pointer; margin-top: 15px; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;
-        }
-        .vital-sign-btn:hover { background: #319795; color: #fff; box-shadow: 0 0 15px rgba(49, 151, 149, 0.5); }
-        .monitor-result { display: none; opacity: 0; transition: opacity 0.5s ease; margin-top: 20px; }
-        .monitor-result.show { display: block; opacity: 1; }
 
-        /* Timeline vertical */
-        .timeline-line::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background-color: rgba(49, 151, 149, 0.3); }
-        @media (min-width: 768px) { .timeline-line::before { left: 50%; transform: translateX(-50%); } }
+        /* Botón de Llamado (Emergencia/Contacto) */
+        .btn-pulse {
+            position: relative;
+        }
+        .btn-pulse::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            box-shadow: 0 0 0 0 rgba(216, 49, 91, 0.7);
+            animation: pulse-red 2s infinite;
+            z-index: -1;
+        }
+        @keyframes pulse-red {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(216, 49, 91, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(216, 49, 91, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(216, 49, 91, 0); }
+        }
+
+        /* Viñetas en forma de Cruz Médica */
+        .medical-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+        .medical-list li::before {
+            content: '\f0fe'; /* FontAwesome fa-plus-square */
+            font-family: 'FontAwesome';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #3E92CC;
+            font-size: 14px;
+        }
+
+        /* Etiqueta tipo "Brazalete de Paciente/ID" */
+        .id-badge {
+            background: linear-gradient(135deg, #0A2463, #3E92CC);
+            color: white;
+            border-radius: 8px;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
     </style>
 </head>
-<body class="font-body antialiased relative">
+<body class="text-gray-800 antialiased">
 
-    <!-- Capas de Fondo -->
-    <div class="background-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-    <div id="tsparticles" class="fixed inset-0 z-[-1]"></div>
+    <!-- Navbar Minimalista (Encabezado de Historia Clínica) -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur border-b border-gray-200 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <i class="fa-solid fa-notes-medical text-vitalBlue text-2xl"></i>
+            <span class="font-bold text-quiroNavy tracking-wide">EXPEDIENTE<span class="font-light text-gray-500">_PROFESIONAL</span></span>
+        </div>
+        <a href="#contacto" class="text-sm font-semibold text-alertRed hover:text-red-700 transition flex items-center gap-2">
+            <i class="fa-solid fa-phone"></i> Llamado de Contacto
+        </a>
+    </nav>
 
-    <div class="container mx-auto px-6 relative z-10">
+    <main class="container mx-auto px-4 md:px-8 pt-32 pb-20 max-w-6xl">
         
-        <!-- Hero Section -->
-        <header class="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 pt-20 pb-12">
-            <div class="flex-1 z-10 text-center md:text-left">
-                <div class="status-badge">
-                    <div class="status-dot"></div>
-                    Auxiliar de Enfermería · Bucaramanga[cite: 2]
-                </div>
-                
-                <h1 class="font-heading text-5xl md:text-7xl font-bold text-clinNavy leading-tight mb-4">
-                    Leonardo <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-clinTeal to-blue-500">Caceres Ayala</span>[cite: 2]
-                </h1>
-                
-                <div class="typing-text">
-                    <span id="typed-text"></span><span class="cursor">&nbsp;</span>
-                </div>
+        <!-- SECCIÓN 1: IDENTIFICACIÓN DEL PROFESIONAL (El Hero) -->
+        <section class="mb-16 fade-in-section is-visible">
+            <div class="clinical-card p-8 md:p-12 relative overflow-hidden">
+                <!-- EKG decorativo de fondo -->
+                <svg class="absolute top-0 right-0 w-2/3 h-full opacity-[0.03] text-quiroNavy pointer-events-none" viewBox="0 0 500 150" preserveAspectRatio="none">
+                    <polyline points="0,75 50,75 60,30 70,120 80,75 120,75 130,50 140,100 150,75 500,75" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
 
-                <p class="text-lg text-gray-600 leading-relaxed mb-8 font-light max-w-2xl">
-                    Perfil operativo y asistencial capaz de asumir el cuidado integral del paciente con conocimientos teóricos, habilidades y destrezas adquiridas en mi experiencia[cite: 2]. Atención oportuna y ética frente a situaciones adversas[cite: 2].
-                </p>
-
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <a href="#contacto" class="bg-clinNavy text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-opacity-90 hover:-translate-y-1 transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-heart-pulse"></i> Contactar ahora
-                    </a>
-                </div>
-            </div>
-            
-            <div class="flex-1 flex justify-center z-10 hidden md:flex">
-                <div class="relative w-80 h-80 glass-card rounded-full flex items-center justify-center border-4 border-white/50 shadow-2xl">
-                    <i class="fa-solid fa-user-nurse text-9xl text-clinTeal opacity-80"></i>
-                </div>
-            </div>
-        </header>
-
-        <!-- Sección de KPIs (Basado en la experiencia listada) -->
-        <section class="grid grid-cols-2 md:grid-cols-4 gap-6 py-16">
-            <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="font-heading text-4xl font-bold text-clinTeal mb-2 flex justify-center items-baseline"><span class="counter" data-target="10">0</span>+</div>
-                <div class="text-sm font-semibold text-clinNavy uppercase tracking-wider">Años de Experiencia[cite: 2]</div>
-            </div>
-            <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="font-heading text-4xl font-bold text-clinTeal mb-2 flex justify-center items-baseline"><span class="counter" data-target="4">0</span></div>
-                <div class="text-sm font-semibold text-clinNavy uppercase tracking-wider">Instituciones Clínicas[cite: 2]</div>
-            </div>
-            <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="font-heading text-4xl font-bold text-clinTeal mb-2 flex justify-center items-baseline"><span class="counter" data-target="3">0</span></div>
-                <div class="text-sm font-semibold text-clinNavy uppercase tracking-wider">Cursos de Formación[cite: 2]</div>
-            </div>
-            <div class="glass-card rounded-2xl p-6 text-center">
-                <div class="font-heading text-4xl font-bold text-clinTeal mb-2 flex justify-center items-baseline"><span class="counter" data-target="2">0</span></div>
-                <div class="text-sm font-semibold text-clinNavy uppercase tracking-wider">Títulos Técnicos[cite: 2]</div>
-            </div>
-        </section>
-
-        <!-- Ecosistema Clínico (Radar + Monitor) -->
-        <section class="py-20">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center text-clinNavy mb-12">Habilidades y Destrezas[cite: 2]</h2>
-            
-            <div class="grid md:grid-cols-2 gap-10 items-center">
-                <!-- Gráfico de Radar -->
-                <div class="glass-card p-8 rounded-3xl h-full flex flex-col justify-center">
-                    <canvas id="skillsChart"></canvas>
-                </div>
-
-                <!-- Monitor de Signos Vitales (UX interactiva) -->
-                <div class="clinical-monitor relative h-full flex flex-col">
-                    <div class="monitor-header">
-                        <span><i class="fa-solid fa-bed-pulse"></i> PERFIL_ASISTENCIAL.sys</span>
-                        <span class="flex gap-2"><div class="w-3 h-3 rounded-full bg-red-500"></div><div class="w-3 h-3 rounded-full bg-yellow-500"></div><div class="w-3 h-3 rounded-full bg-green-500"></div></span>
+                <div class="flex flex-col md:flex-row gap-10 items-center md:items-start relative z-10">
+                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-vitalBlue/20 bg-sterileBg flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-user-nurse text-6xl text-quiroNavy opacity-80"></i>
                     </div>
-                    <div class="monitor-body relative flex-1">
-                        <p class="mb-2">> Iniciando extracción de destrezas adquiridas...</p>
-                        <p class="mb-4">> Parámetros: <span class="text-blue-400">Atención Directa</span>, <span class="text-blue-400">Manejo de Emociones</span>[cite: 2].</p>
+                    
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="id-badge mb-4">
+                            <i class="fa-solid fa-id-card-clip"></i> CC. 1098707484
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold text-quiroNavy mb-2">LEONARDO CACERES AYALA</h1>
+                        <h2 class="text-xl text-vitalBlue font-medium mb-6">Auxiliar de Enfermería[cite: 2]</h2>
                         
-                        <button class="vital-sign-btn" onclick="runDiagnostic()">
-                            <i class="fa-solid fa-microscope"></i> Ejecutar Diagnóstico
-                        </button>
-                        
-                        <div id="diagnostic-result" class="monitor-result">
-                            <div class="w-full bg-gray-800 rounded mt-4 p-4 text-sm border border-green-800">
-                                <p class="text-green-300">== RESULTADOS DEL PACIENTE / ROL ==</p>
-                                <p><strong>Terapias de Reemplazo:</strong> Conexión de paciente a terapia peritoneales y terapias TRRC (Gambro, ASAHI, Nikkiso)[cite: 2].</p>
-                                <p><strong>Cuidado Intensivo:</strong> Cuidado hemodinámico de paciente pediátrico y atención primaria en Unidad Ecmo[cite: 2].</p>
-                                <p><strong>Procedimientos:</strong> Canalización de accesos periféricos venosos, paso de sondas vesicales, nasogástricas y orotraqueales[cite: 2].</p>
-                                <p><strong>Relaciones Humanas:</strong> Estableciendo relaciones armónicas y el manejo apropiado de emociones del paciente y su familia[cite: 2].</p>
-                                <p class="mt-2 text-green-500 animate-pulse">STATUS: ÓPTIMO [||||||||||] 100%</p>
-                            </div>
+                        <div class="bg-blue-50 border-l-4 border-vitalBlue p-5 rounded-r-lg text-gray-700 text-sm md:text-base leading-relaxed">
+                            <p class="mb-2"><i class="fa-solid fa-quote-left text-vitalBlue/40 mr-2"></i><strong>Perfil Profesional:</strong> Perfil operativo y asistencial capaz de asumir el cuidado integral del paciente con conocimientos teóricos, habilidades y destrezas adquiridas en mi experiencia[cite: 2].</p>
+                            <p>Tales como la coordinación de actividades en la atención directa del paciente, estableciendo relaciones armónicas y el manejo apropiado de emociones del paciente y su familia. Atención oportuna y ética frente a situaciones adversas[cite: 2].</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Trayectoria (Línea de Tiempo) -->
-        <section class="py-20">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold text-center text-clinNavy mb-16">Experiencia Profesional[cite: 2]</h2>
-            
-            <div class="relative timeline-line max-w-4xl mx-auto">
-                <!-- Item 1 -->
-                <div class="mb-12 md:flex justify-between items-center w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="z-20 flex items-center bg-clinTeal shadow-xl w-6 h-6 rounded-full absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2 border-4 border-white"></div>
-                    <div class="glass-card rounded-2xl w-full md:w-5/12 p-6 ml-10 md:ml-0 hover:-translate-y-2 transition-transform">
-                        <h3 class="font-bold text-clinNavy text-xl">Coomultrasan[cite: 2]</h3>
-                        <span class="text-sm font-semibold text-clinTeal block mb-3"><i class="fa-regular fa-calendar"></i> Septiembre 2023 - Actualidad[cite: 2]</span>
-                        <p class="text-gray-600">Atención en sala de Procedimientos (curaciones, EKG, administración de medicamentos). Actualizar base de datos de pacientes en programa de riesgo cardiovascular[cite: 2].</p>
+        <!-- Divisor EKG Animado -->
+        <div class="ekg-line text-alertRed mb-16 opacity-70">
+            <svg viewBox="0 0 1000 50" preserveAspectRatio="none" class="w-full h-full">
+                <polyline points="0,25 200,25 210,10 220,40 230,25 400,25 410,10 420,40 430,25 600,25 610,-10 620,60 630,25 800,25 810,10 820,40 830,25 1000,25" fill="none" stroke="currentColor" stroke-width="2" class="ekg-path"/>
+            </svg>
+        </div>
+
+        <!-- SECCIÓN 2: HISTORIAL CLÍNICO LABORAL (Experiencia) -->
+        <section class="mb-20 fade-in-section">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-10 h-10 rounded-full bg-quiroNavy text-white flex items-center justify-center"><i class="fa-solid fa-truck-medical"></i></div>
+                <h3 class="text-2xl font-bold text-quiroNavy">Historial de Experiencia Profesional</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Puesto 1 -->
+                <div class="clinical-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-quiroNavy">Coomultrasan[cite: 2]</h4>
+                            <span class="text-vitalBlue font-medium text-sm">Auxiliar de Enfermería[cite: 2]</span>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full border border-gray-200"><i class="fa-regular fa-calendar"></i> Sept 2023 - Actualidad[cite: 2]</span>
                     </div>
+                    <ul class="medical-list text-gray-600 text-sm">
+                        <li>Atención en sala de Procedimientos (curaciones, EKG, administración de medicamentos)[cite: 2].</li>
+                        <li>Actualizar base de datos de pacientes en programa de riesgo cardiovascular[cite: 2].</li>
+                    </ul>
                 </div>
 
-                <!-- Item 2 -->
-                <div class="mb-12 md:flex justify-between items-center w-full flex-row-reverse md:flex-row">
-                    <div class="glass-card rounded-2xl w-full md:w-5/12 p-6 ml-10 md:ml-0 md:text-right hover:-translate-y-2 transition-transform">
-                        <h3 class="font-bold text-clinNavy text-xl">Unidad Renal[cite: 2]</h3>
-                        <span class="text-sm font-semibold text-clinTeal block mb-3"><i class="fa-regular fa-calendar"></i> Noviembre 2018 - marzo 2023[cite: 2]</span>
-                        <p class="text-gray-600">Cuidado de paciente en unidad de hemodiálisis. Conexión de paciente a terapia peritoneales y terapias TRRC. Cuidado de pacientes en unidad de cuidado intensivo (Gambro, ASAHI, Nikkiso)[cite: 2].</p>
+                <!-- Puesto 2 -->
+                <div class="clinical-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-quiroNavy">Unidad Renal[cite: 2]</h4>
+                            <span class="text-vitalBlue font-medium text-sm">Auxiliar de Enfermería[cite: 2]</span>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full border border-gray-200"><i class="fa-regular fa-calendar"></i> Nov 2018 - Mar 2023[cite: 2]</span>
                     </div>
-                    <div class="z-20 flex items-center bg-clinTeal shadow-xl w-6 h-6 rounded-full absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2 border-4 border-white"></div>
-                    <div class="hidden md:block w-5/12"></div>
+                    <ul class="medical-list text-gray-600 text-sm">
+                        <li>Cuidado de paciente en unidad de hemodiálisis[cite: 2].</li>
+                        <li>Conexión de paciente a terapia peritoneales y terapias TRRC[cite: 2].</li>
+                        <li>Cuidado de pacientes en unidad de cuidado intensivo Con terapias de remplazo renal en tecnologías: Gambro, ASAHI, Nikkiso[cite: 2].</li>
+                    </ul>
                 </div>
 
-                <!-- Item 3 -->
-                <div class="mb-12 md:flex justify-between items-center w-full">
-                    <div class="hidden md:block w-5/12"></div>
-                    <div class="z-20 flex items-center bg-clinTeal shadow-xl w-6 h-6 rounded-full absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2 border-4 border-white"></div>
-                    <div class="glass-card rounded-2xl w-full md:w-5/12 p-6 ml-10 md:ml-0 hover:-translate-y-2 transition-transform">
-                        <h3 class="font-bold text-clinNavy text-xl">Hospital Departamental Tomas Uribe Uribe[cite: 2]</h3>
-                        <span class="text-sm font-semibold text-clinTeal block mb-3"><i class="fa-regular fa-calendar"></i> Febrero 2018 - Octubre 2018[cite: 2]</span>
-                        <p class="text-gray-600">Atención de pacientes en unidad de reanimación cardiopulmonar. Administración de medicamentos y atención de paciente en unidad de trauma. Canalización de accesos periféricos venosos, paso de sondas[cite: 2].</p>
+                <!-- Puesto 3 -->
+                <div class="clinical-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-quiroNavy">Hospital Dept. Tomas Uribe Uribe[cite: 2]</h4>
+                            <span class="text-vitalBlue font-medium text-sm">Auxiliar de Enfermería[cite: 2]</span>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full border border-gray-200"><i class="fa-regular fa-calendar"></i> Feb 2018 - Oct 2018[cite: 2]</span>
                     </div>
+                    <ul class="medical-list text-gray-600 text-sm">
+                        <li>Atención de pacientes en unidad de reanimación cardiopulmonar[cite: 2].</li>
+                        <li>Administración de medicamentos y atención de paciente en unidad de trauma[cite: 2].</li>
+                        <li>Canalización de accesos periféricos venosos, paso de sondas vesicales, nasogástricas y orotraqueales[cite: 2].</li>
+                    </ul>
                 </div>
 
-                <!-- Item 4 -->
-                <div class="mb-12 md:flex justify-between items-center w-full flex-row-reverse md:flex-row">
-                    <div class="glass-card rounded-2xl w-full md:w-5/12 p-6 ml-10 md:ml-0 md:text-right hover:-translate-y-2 transition-transform">
-                        <h3 class="font-bold text-clinNavy text-xl">Fundación cardiovascular de Colombia[cite: 2]</h3>
-                        <span class="text-sm font-semibold text-clinTeal block mb-3"><i class="fa-regular fa-calendar"></i> Enero 2016 - Septiembre 2017[cite: 2]</span>
-                        <p class="text-gray-600">Cuidado hemodinámico de paciente pediátrico en unidad de cuidado intensivo cardiovascular. Atención primaria en Unidad Ecmo pediátrico y adulto[cite: 2].</p>
+                <!-- Puesto 4 -->
+                <div class="clinical-card p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-quiroNavy">Fundación Cardiovascular de Col.[cite: 2]</h4>
+                            <span class="text-vitalBlue font-medium text-sm">Auxiliar de Enfermería[cite: 2]</span>
+                        </div>
+                        <span class="bg-gray-100 text-gray-600 text-xs px-3 py-1 rounded-full border border-gray-200"><i class="fa-regular fa-calendar"></i> Ene 2016 - Sept 2017[cite: 2]</span>
                     </div>
-                    <div class="z-20 flex items-center bg-clinTeal shadow-xl w-6 h-6 rounded-full absolute left-[12px] md:left-1/2 transform md:-translate-x-1/2 border-4 border-white"></div>
-                    <div class="hidden md:block w-5/12"></div>
+                    <ul class="medical-list text-gray-600 text-sm">
+                        <li>Cuidado hemodinámico de paciente pediátrico en unidad de cuidado intensivo cardiovascular[cite: 2].</li>
+                        <li>Atención primaria en Unidad Ecmo pediátrico y adulto[cite: 2].</li>
+                        <li>Cuidado y atención primaria de paciente en salas de cirugía cardiovascular adulto[cite: 2].</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Formación y Referencias -->
-        <section class="py-20 grid md:grid-cols-2 gap-10">
-            <div class="glass-card p-8 rounded-3xl">
-                <h2 class="font-heading text-2xl font-bold text-clinNavy mb-6">Formación[cite: 2]</h2>
-                <ul class="space-y-4 text-gray-700">
-                    <li><i class="fa-solid fa-graduation-cap text-clinTeal mr-2"></i> TECNICO AUXILIAR DE ENFERMERIA - SENA (Feb 2016)[cite: 2]</li>
-                    <li><i class="fa-solid fa-graduation-cap text-clinTeal mr-2"></i> TECNICO PROF. GESTION EMPRESARIAL - Universidad Nacional (Mar 2009)[cite: 2]</li>
-                    <li><i class="fa-solid fa-certificate text-clinTeal mr-2"></i> ATENCION INTEGRAL VICTIMAS DE VIOLENCIA Y ABUSO SEXUAL[cite: 2]</li>
-                    <li><i class="fa-solid fa-certificate text-clinTeal mr-2"></i> REANIMACION CARDIOPULMONAR BASICO[cite: 2]</li>
-                    <li><i class="fa-solid fa-certificate text-clinTeal mr-2"></i> MANEJO HEMODINAMICO DE PACIENTE EN HEMODIALISIS[cite: 2]</li>
-                </ul>
-            </div>
+        <!-- SECCIÓN 3: CERTIFICACIONES Y REFERENCIAS (Formación y Colegas) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-16 fade-in-section">
             
-            <div class="glass-card p-8 rounded-3xl">
-                <h2 class="font-heading text-2xl font-bold text-clinNavy mb-6">Referencias Personales[cite: 2]</h2>
-                <ul class="space-y-6 text-gray-700">
-                    <li>
-                        <strong>MARGARITA CASTRO</strong><br>
-                        Directora Médica UR | <i class="fa-solid fa-phone text-sm"></i> 3106971603[cite: 2]
-                    </li>
-                    <li>
-                        <strong>LEIDY MORENO</strong><br>
-                        Enf Jefe Uci Ped Cardio y Ecmo | <i class="fa-solid fa-phone text-sm"></i> 3124698291[cite: 2]
-                    </li>
-                    <li>
-                        <strong>ANNY ARDILA</strong><br>
-                        Enf jefe PyP Coomultrasan | <i class="fa-solid fa-phone text-sm"></i> 3186238791[cite: 2]
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Footer / Contacto -->
-        <footer id="contacto" class="py-16 text-center">
-            <div class="glass-card bg-clinNavy/5 border-clinNavy/10 max-w-3xl mx-auto rounded-3xl p-10">
-                <h2 class="font-heading text-3xl font-bold text-clinNavy mb-4">Información de Contacto[cite: 2]</h2>
-                <p class="text-clinTeal mb-8 font-semibold">CC. 1098707484 Bucaramanga[cite: 2]</p>
+            <!-- Formación (Carpeta de Certificados) -->
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-vitalBlue text-white flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3 class="text-2xl font-bold text-quiroNavy">Formación y Certificados</h3>
+                </div>
                 
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-gray-700">
-                    <a href="mailto:Leoayala0712@gmail.com" class="flex items-center gap-2 hover:text-clinTeal transition"><i class="fa-solid fa-envelope"></i> Leoayala0712@gmail.com[cite: 2]</a>
-                    <span class="hidden md:block">|</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-phone"></i> 3182663597 - 3186268972[cite: 2]</span>
-                    <span class="hidden md:block">|</span>
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Cra 17 #59-12 apto 501[cite: 2]</span>
+                <div class="clinical-card p-6 h-full border-t-vitalBlue">
+                    <div class="mb-6">
+                        <h4 class="font-bold text-gray-800"><i class="fa-solid fa-certificate text-vitalBlue mr-2"></i> Títulos Formales</h4>
+                        <div class="ml-6 mt-3 space-y-4">
+                            <div class="border-l-2 border-gray-200 pl-4">
+                                <p class="font-semibold text-quiroNavy">TECNICO AUXILIAR DE ENFERMERIA[cite: 2]</p>
+                                <p class="text-sm text-gray-500">SENA | FEBRERO/23/2016[cite: 2]</p>
+                            </div>
+                            <div class="border-l-2 border-gray-200 pl-4">
+                                <p class="font-semibold text-quiroNavy">TECNICO PROF. GESTION EMPRESARIAL[cite: 2]</p>
+                                <p class="text-sm text-gray-500">Universidad Nacional de Colombia | MARZO/1/2009[cite: 2]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-gray-800 mb-3"><i class="fa-solid fa-heart-circle-check text-vitalBlue mr-2"></i> Cursos Clínicos Especializados[cite: 2]</h4>
+                        <div class="flex flex-wrap gap-2 ml-6">
+                            <span class="bg-blue-50 text-quiroNavy text-xs px-3 py-2 rounded border border-blue-100 font-medium">REANIMACION CARDIOPULMONAR BASICO[cite: 2]</span>
+                            <span class="bg-blue-50 text-quiroNavy text-xs px-3 py-2 rounded border border-blue-100 font-medium">MANEJO HEMODINAMICO DE PACIENTE EN HEMODIALISIS[cite: 2]</span>
+                            <span class="bg-blue-50 text-quiroNavy text-xs px-3 py-2 rounded border border-blue-100 font-medium">ATENCION INTEGRAL VICTIMAS DE VIOLENCIA Y ABUSO SEXUAL[cite: 2]</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </footer>
-    </div>
 
-    <!-- Scripts de Interacción -->
+            <!-- Referencias Médicas (Contactos) -->
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-quiroNavy text-white flex items-center justify-center"><i class="fa-solid fa-users-medical"></i></div>
+                    <h3 class="text-2xl font-bold text-quiroNavy">Referencias Personales y Familiares</h3>
+                </div>
+
+                <div class="clinical-card p-6 h-full border-t-quiroNavy">
+                    <div class="space-y-4">
+                        <!-- Ref 1 -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div>
+                                <p class="font-bold text-quiroNavy">MARGARITA CASTRO[cite: 2]</p>
+                                <p class="text-xs text-gray-500">Directora Médica UR[cite: 2]</p>
+                            </div>
+                            <a href="tel:3106971603" class="text-vitalBlue hover:text-quiroNavy bg-white p-2 rounded-full shadow-sm"><i class="fa-solid fa-phone"></i> 3106971603[cite: 2]</a>
+                        </div>
+                        <!-- Ref 2 -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div>
+                                <p class="font-bold text-quiroNavy">LEIDY MORENO[cite: 2]</p>
+                                <p class="text-xs text-gray-500">Enf Jefe Uci Ped Cardio y Ecmo[cite: 2]</p>
+                            </div>
+                            <a href="tel:3124698291" class="text-vitalBlue hover:text-quiroNavy bg-white p-2 rounded-full shadow-sm"><i class="fa-solid fa-phone"></i> 3124698291[cite: 2]</a>
+                        </div>
+                        <!-- Ref 3 -->
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-100">
+                            <div>
+                                <p class="font-bold text-quiroNavy">ANNY ARDILA[cite: 2]</p>
+                                <p class="text-xs text-gray-500">Enf jefe PyP Coomultrasan[cite: 2]</p>
+                            </div>
+                            <a href="tel:3186238791" class="text-vitalBlue hover:text-quiroNavy bg-white p-2 rounded-full shadow-sm"><i class="fa-solid fa-phone"></i> 3186238791[cite: 2]</a>
+                        </div>
+                        <!-- Familiar -->
+                        <div class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                            <div>
+                                <p class="font-bold text-gray-700">LAURA CACERES[cite: 2]</p>
+                                <p class="text-xs text-gray-500">Hermana (Referencia Familiar)[cite: 2]</p>
+                            </div>
+                            <span class="text-sm text-gray-600"><i class="fa-solid fa-phone text-vitalBlue mr-1"></i> 3165847521[cite: 2]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: CONTACTO (Botón de Llamado) -->
+        <section id="contacto" class="fade-in-section">
+            <div class="bg-quiroNavy rounded-2xl p-8 md:p-12 text-center text-white shadow-2xl relative overflow-hidden">
+                <!-- Patrón cruz médica agua marca -->
+                <i class="fa-solid fa-truck-medical absolute -right-10 -bottom-10 text-9xl text-white opacity-5"></i>
+                
+                <h2 class="text-3xl font-bold mb-4">¿Requiere un Auxiliar de Enfermería con experiencia en UCI?</h2>
+                <p class="text-vitalBlue mb-8 max-w-2xl mx-auto">Atención oportuna y ética frente a situaciones adversas[cite: 2]. Disponible en Bucaramanga[cite: 2].</p>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="mailto:Leoayala0712@gmail.com" class="btn-pulse bg-alertRed hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Leoayala0712@gmail.com[cite: 2]
+                    </a>
+                    
+                    <div class="flex items-center gap-4 bg-white/10 px-6 py-3 rounded-full border border-white/20">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <span>3182663597 - 3186268972[cite: 2]</span>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-white/20 text-sm text-gray-300 flex justify-center gap-4">
+                    <span><i class="fa-solid fa-location-dot"></i> Cra 17 #59-12 apto 501[cite: 2]</span>
+                    <span>|</span>
+                    <span><i class="fa-solid fa-cake-candles"></i> Nacimiento: 12/Julio/1991[cite: 2]</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript para el Scroll Suave y Animaciones Fade-In -->
     <script>
-        // 1. Efecto de Escritura (Extraído del Perfil Profesional / Cursos)
-        const textArray = ["Coordinación de actividades.", "Atención directa del paciente.", "Reanimación Cardiopulmonar.", "Manejo Hemodinámico."];
-        let textIndex = 0; let charIndex = 0;
-        const typedTextElement = document.getElementById("typed-text");
+        document.addEventListener("DOMContentLoaded", () => {
+            // Animación de aparición (Fade-In) al hacer scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
 
-        function type() {
-            if (charIndex < textArray[textIndex].length) {
-                typedTextElement.textContent += textArray[textIndex].charAt(charIndex);
-                charIndex++; setTimeout(type, 60);
-            } else { setTimeout(erase, 2000); }
-        }
-        function erase() {
-            if (charIndex > 0) {
-                typedTextElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
-                charIndex--; setTimeout(erase, 30);
-            } else {
-                textIndex++; if (textIndex >= textArray.length) textIndex = 0;
-                setTimeout(type, 500);
-            }
-        }
-
-        // 2. Ejecutar Diagnóstico (Monitor Clínico)
-        function runDiagnostic() {
-            const btn = document.querySelector('.vital-sign-btn');
-            const result = document.getElementById('diagnostic-result');
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Analizando datos...';
-            
-            setTimeout(() => {
-                btn.style.display = 'none';
-                result.classList.add('show');
-            }, 1200);
-        }
-
-        // 3. Inicialización cuando carga el DOM
-        document.addEventListener("DOMContentLoaded", function() { 
-            setTimeout(type, 1000); 
-
-            // Contadores Animados (Intersection Observer)
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver(entries => {
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = +counter.getAttribute('data-target');
-                        const duration = 2000; 
-                        const increment = target / (duration / 16); 
-                        let current = 0;
-                        const updateCounter = () => {
-                            current += increment;
-                            if (current < target) {
-                                counter.innerText = Math.ceil(current);
-                                requestAnimationFrame(updateCounter);
-                            } else {
-                                counter.innerText = target;
-                            }
-                        };
-                        updateCounter();
-                        observer.unobserve(counter);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Dejar de observar una vez que es visible
                     }
                 });
-            }, { threshold: 0.5 });
-            counters.forEach(counter => observer.observe(counter));
+            }, observerOptions);
 
-            // Gráfico de Radar (Temas extraídos de sus formaciones y experiencia)
-            const ctx = document.getElementById('skillsChart').getContext('2d');
-            Chart.defaults.font.family = "'Outfit', sans-serif";
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Reanimación (RCP)', 'Manejo Hemodinámico', 'Terapias Renales', 'Cuidado UCI', 'Manejo de Emociones'],
-                    datasets: [{
-                        label: 'Experiencia',
-                        data: [95, 100, 95, 90, 100],
-                        backgroundColor: 'rgba(49, 151, 149, 0.2)',
-                        borderColor: '#319795',
-                        pointBackgroundColor: '#1A365D',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: '#319795',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            angleLines: { color: 'rgba(26, 54, 93, 0.1)' },
-                            grid: { color: 'rgba(26, 54, 93, 0.1)' },
-                            pointLabels: { font: { size: 13, weight: '600' }, color: '#1A365D' },
-                            ticks: { display: false, min: 0, max: 100 }
-                        }
-                    },
-                    plugins: { legend: { display: false } }
-                }
+            document.querySelectorAll('.fade-in-section').forEach((section) => {
+                observer.observe(section);
             });
-        });
-
-        // 4. Partículas (Simulando Oxígeno/Pureza Clínica)
-        tsParticles.load("tsparticles", {
-            fullScreen: { enable: true, zIndex: -1 },
-            fpsLimit: 60,
-            particles: {
-                color: { value: ["#319795", "#E6FFFA", "#ffffff"] },
-                move: {
-                    direction: "top",
-                    enable: true,
-                    outModes: { default: "out" },
-                    random: true,
-                    speed: 0.8,
-                    straight: false
-                },
-                number: { density: { enable: true, area: 800 }, value: 30 },
-                opacity: {
-                    value: 0.4,
-                    animation: { enable: true, speed: 0.5, minimumValue: 0.1 }
-                },
-                shape: { type: "circle" },
-                size: { value: { min: 2, max: 6 }, random: true }
-            },
-            detectRetina: true
         });
     </script>
 </body>
